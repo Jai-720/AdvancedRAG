@@ -1,10 +1,5 @@
 # Multi-Tenant AI Document Concierge
 
-!App Screenshot 
-![Uploading Index.png…]()
-
-
-
 
 https://github.com/user-attachments/assets/74460ff0-6751-4a2e-9c53-ab1658b5fddf
 
@@ -14,12 +9,11 @@ Generation (RAG) SaaS application. This system allows authenticated users to upl
 
 ## Architecture & Data Flow
 
+
 ```mermaid
 graph TD
     subgraph Client [Frontend - Vanilla JS]
         UI[Chat Interface & Upload Form]
-        API_CLIENT[apiFetch Wrapper]
-        UI -->|User Actions| API_CLIENT
     end
 
     subgraph Server [FastAPI Backend]
@@ -28,9 +22,9 @@ graph TD
         CHAT["/chat endpoint"]
         BG[Background Tasks]
         
-        API_CLIENT --> AUTH
-        API_CLIENT --> UPLOAD
-        API_CLIENT --> CHAT
+        UI -->|Raw Fetch + Token| AUTH
+        UI -->|Raw Fetch + Token| UPLOAD
+        UI -->|Raw Fetch + Token| CHAT
     end
 
     subgraph Ingestion Pipeline
@@ -57,6 +51,9 @@ graph TD
         GEMINI -->|Answer| CHAT
     end
 ```
+
+
+
 
 The application strictly separates the UI, API, and background machine learning workloads to ensure high responsiveness:
 *   **Frontend:** Vanilla JavaScript utilizing `FormData` streams and JWT-based authorization.
