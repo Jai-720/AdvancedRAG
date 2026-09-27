@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/SignUp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <main class="auth-shell">
+        <div class="auth-card">
+            <span class="auth-badge">Create account</span>
+            <form id="SignUp" class="auth-form">
+                <h1>Sign Up</h1>
+
+                <label for="signup_email">Email address</label>
+                <input type="email" required placeholder="Enter your email" id="signup_email">
+
+                <label for="signup_pass">Password</label>
+                <input type="password" required placeholder="Enter your password" id="signup_pass">
+
+                <button type="submit">Create account</button>
+                <p class="auth-switch">
+                    Already have an account? <a href="login.html">Login</a>
+                </p>
+            </form>
+        </div>
+        <div id="signup_display"></div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

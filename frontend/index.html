@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdvancedRAG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="app-body">
+    <main class="page-shell">
+        <nav class="topbar">
+            <div class="brand-wrap">
+                <div class="brand-mark">AI</div>
+                <div>
+                    <span class="eyebrow">Business assistant</span>
+                    <h1>AdvancedRAG</h1>
+                </div>
+            </div>
+            <button type="button" class="primary-btn" onclick="window.location.href='login.html'">Login</button>
+        </nav>
+
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <span class="tag">AI-powered insights</span>
+                <h2>Ask questions. Find answers faster.</h2>
+                <p>
+                    Explore your business knowledge base with a smarter assistant that understands context,
+                    recommends actions, and helps teams move with confidence.
+                </p>
+            </div>
+
+            <div class="chat-card">
+                <div class="upload-panel">
+                    <input type="file" id="pdf-upload" accept=".pdf, .txt">
+                    <button type="button" id="upload-btn">Upload Document</button>
+                </div>
+
+                <form id="chatbot" class="chat-form">
+                    <label for="txt_value" class="sr-only">Your question</label>
+                    <textarea id="txt_value" rows="5" placeholder="Ask anything about your documents..."></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <div id="cat-box" class="card response-box">
+                    <p>Your answer will appear here.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

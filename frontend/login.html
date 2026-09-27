@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <main class="auth-shell">
+        <div class="auth-card">
+            <span class="auth-badge">Welcome back</span>
+            <form id="login" class="auth-form">
+                <h1>Login</h1>
+
+                <label for="login_email">Email address</label>
+                <input id="login_email" type="email" required placeholder="Enter your email">
+
+                <label for="login_pass">Password</label>
+                <input id="login_pass" type="password" required placeholder="Enter your password">
+
+                <button type="submit">Sign in</button>
+                <p class="auth-switch">
+                    New here? <a href="signup.html">Create account</a>
+                </p>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
