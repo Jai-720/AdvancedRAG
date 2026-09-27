@@ -6,7 +6,7 @@
 A full-stack, multi-tenant Retrieval-Augmented Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, processes them via background threads, and enables contextual AI Q&A using a locally hosted vector database isolated by user identity.
 
 ## Architecture & Data Flow
-
+''' mermaid
 graph TD
     subgraph Client [Frontend - Vanilla JS]
         UI[Chat Interface & Upload Form]
@@ -48,6 +48,7 @@ graph TD
         CHROMA -->|Context| GEMINI
         GEMINI -->|Answer| CHAT
     end
+    '''
 
 The application strictly separates the UI, API, and background machine learning workloads to ensure high responsiveness:
 *   **Frontend:** Vanilla JavaScript utilizing `FormData` streams and JWT-based authorization.
