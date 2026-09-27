@@ -1,9 +1,16 @@
 # Multi-Tenant AI Document Concierge
 
-![App Screenshot](assets/presentation.mp4)
+!App Screenshot 
+![Uploading Index.png…]()
+
+
+
+
+https://github.com/user-attachments/assets/74460ff0-6751-4a2e-9c53-ab1658b5fddf
 
 ## Overview
-A full-stack, multi-tenant Retrieval-Augmented Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, processes them via background threads, and enables contextual AI Q&A using a locally hosted vector database isolated by user identity.
+A full-stack, multi-tenant Retrieval-Augmented
+Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, processes them via background threads, and enables contextual AI Q&A using a locally hosted vector database isolated by user identity.
 
 ## Architecture & Data Flow
 
