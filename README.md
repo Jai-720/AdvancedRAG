@@ -5,7 +5,10 @@ A full-stack, multi-tenant Retrieval-Augmented Generation (RAG) SaaS application
 ## Video Demonstration
 
 Watch the system architecture and application workflow here:
-[https://github.com/user-attachments/assets/Presentation.mp4](https://www.google.com/search?q=https://github.com/user-attachments/assets/Presentation.mp4&utm_source=gemini)[cite: 3]
+
+
+https://github.com/user-attachments/assets/c494b1ae-d0e7-4f5f-bb77-37012484bbb7
+
 
 ## System Architecture
 
