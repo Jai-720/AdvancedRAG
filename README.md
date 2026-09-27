@@ -6,7 +6,9 @@
 A full-stack, multi-tenant Retrieval-Augmented Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, processes them via background threads, and enables contextual AI Q&A using a locally hosted vector database isolated by user identity.
 
 ## Architecture & Data Flow
-''' mermaid
+
+
+```mermaid
 graph TD
     subgraph Client [Frontend - Vanilla JS]
         UI[Chat Interface & Upload Form]
@@ -19,36 +21,12 @@ graph TD
         UPLOAD[/upload endpoint]
         CHAT[/chat endpoint]
         BG[Background Tasks]
-        
+
         API_CLIENT --> AUTH
         API_CLIENT --> UPLOAD
         API_CLIENT --> CHAT
     end
-
-    subgraph Ingestion Pipeline
-        LOADER[PyPDFLoader & TextSplitter]
-        OLLAMA[Ollama: nomic-embed-text]
-        FS[(temp_uploads/user_id)]
-        
-        UPLOAD -->|Save File| FS
-        UPLOAD -->|Trigger| BG
-        BG -->|Process| LOADER
-        LOADER -->|Read| FS
-        LOADER -->|Embed| OLLAMA
-    end
-
-    subgraph Retrieval Pipeline
-        REPHRASE[History Rephrase Chain]
-        GEMINI[Gemini 3.5 Flash Lite]
-        CHROMA[(ChromaDB/user_id)]
-        
-        OLLAMA -->|Write| CHROMA
-        CHAT --> REPHRASE
-        REPHRASE -->|Search| CHROMA
-        CHROMA -->|Context| GEMINI
-        GEMINI -->|Answer| CHAT
-    end
-    '''
+```
 
 The application strictly separates the UI, API, and background machine learning workloads to ensure high responsiveness:
 *   **Frontend:** Vanilla JavaScript utilizing `FormData` streams and JWT-based authorization.
