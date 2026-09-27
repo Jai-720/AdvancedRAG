@@ -1,14 +1,13 @@
-# Multi-Tenant AI Document Concierge
+# Advanced RAG SaaS Pipeline
 
+A full-stack, multi-tenant Retrieval-Augmented Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, process them via background threads, and engage in contextual AI Q&A using a locally hosted vector database strictly isolated by user identity.
 
-https://github.com/user-attachments/assets/74460ff0-6751-4a2e-9c53-ab1658b5fddf
+## Video Demonstration
 
-## Overview
-A full-stack, multi-tenant Retrieval-Augmented
-Generation (RAG) SaaS application. This system allows authenticated users to upload PDF documents, processes them via background threads, and enables contextual AI Q&A using a locally hosted vector database isolated by user identity.
+Watch the system architecture and application workflow here:
+[https://github.com/user-attachments/assets/Presentation.mp4](https://www.google.com/search?q=https://github.com/user-attachments/assets/Presentation.mp4&utm_source=gemini)[cite: 3]
 
-## Architecture & Data Flow
-
+## System Architecture
 
 ```mermaid
 graph TD
@@ -50,26 +49,30 @@ graph TD
         CHROMA -->|Context| GEMINI
         GEMINI -->|Answer| CHAT
     end
+
 ```
 
-
-
-
-The application strictly separates the UI, API, and background machine learning workloads to ensure high responsiveness:
-*   **Frontend:** Vanilla JavaScript utilizing `FormData` streams and JWT-based authorization.
-*   **Backend:** FastAPI managing authentication, file persistence, and background task queues.
-*   **Ingestion Pipeline:** LangChain `PyPDFLoader` and `RecursiveCharacterTextSplitter` chunking data into an immutable user-specific `ChromaDB` partition.
-*   **Embedding Engine:** Local inference via Ollama (`nomic-embed-text`) preventing external API timeout constraints during heavy document ingestion.
-*   **Generation Engine:** Gemini 3.5 Flash Lite combined with a contextual conversation history rephraser for highly accurate similarity search retrieval.
-
 ## Core Features
-*   **Strict Multi-Tenancy:** Vector databases are partitioned by immutable integer User IDs, ensuring data privacy across different accounts.
-*   **Asynchronous Processing:** Document chunking and embedding are handed off to FastAPI `BackgroundTasks`, preventing HTTP timeout errors on large PDF uploads.
-*   **Secure Authentication:** Native `bcrypt` password hashing and environment-managed JWT state handling (avoiding deprecated `crypt` dependencies).
-*   **Context-Aware Retrieval:** Implements a dual-chain LangChain architecture that rephrases follow-up questions based on chat history before querying the vector store.
 
-## Prerequisites
-*   Python 3.10+
-*   [Ollama](https://ollama.com/) installed and running locally.
-*   Google Gemini API Key.
+* **Strict Multi-Tenancy:** User data is physically isolated at the file system level (`chroma_db/{user_id}` and `temp_uploads/{user_id}`) to prevent cross-contamination.
+* **Asynchronous Processing:** Document chunking and vector embedding are offloaded to FastAPI `BackgroundTasks` to ensure a non-blocking UI during file uploads.
+* **Idempotent File Ingestion:** The application layer intercepts duplicate file uploads to prevent vector duplication and ChromaDB corruption.
+* **Secure Configuration:** Sensitive environment variables (`.env`) and local user databases are globally shielded via a root-level `.gitignore`[cite: 3].
+* **Global Error Routing:** Network requests are wrapped to automatically handle JWT injection, session expiration (401), and bad requests (400).
 
+## Tech Stack
+
+* **Backend:** FastAPI, Python
+* **Frontend:** Vanilla JavaScript, HTML, CSS
+* **Vector Database:** ChromaDB (Local SQLite)
+* **Embeddings:** Ollama (`nomic-embed-text`)
+* **LLM:** Gemini 3.5 Flash Lite (Contextual Retrieval)
+* **Framework:** LangChain
+
+## Local Setup
+
+1. Clone the repository and navigate to the project root (`AdvancedRAG-master/`)[cite: 3].
+2. Create a virtual environment: `python -m venv venv`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Create a `.env` file in the root directory and add your `GOOGLE_API_KEY` and `JWT_SECRET_KEY`.
+5. Start the backend server: `uvicorn main:app --reload`
